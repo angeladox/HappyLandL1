@@ -1,19 +1,21 @@
 <html>
-    <head>
-        <title>Register New Landlord</title>
-        <meta name="layout" content="main"/>
+    <head style="font-family: comic sans ms; margin-left: 14em;">
+        <title >Register New Landlord</title>
+        <meta name="layout" content="main" style="font-family: comic sans ms;"/>
         <style>
             dd {
                 text-align: left;
-                margin-left: 80px;
-                margin-top: 5px;
+                margin-left: 5em;
+                margin-top: 1em;
+                font-family: comic sans ms;
             }
         </style>
     </head>
     <body>
 
-        <h1>Register New Landlord</h1>
-        <g:form action="register">
+        <h1 style="font-family: comic sans ms;">&nbsp&nbsp Register New Landlord</h1>
+        <g:form action="register" style ="font-family: comic sans ms; font-size: .9em;
+                margin-left: 14em;">
             <dl>
                 <dt>User Id</dt>
                 <dd><g:textField name="userId" value="${landlord?.userId}"/>
@@ -71,8 +73,8 @@
                         </g:eachError>
                     </g:hasErrors>  
                 </dd>
-                
-                <dt><g:submitButton name="register" value="Register"/></dt>
+                <br> 
+                <dt><g:submitButton name="register" value="Register" style="font-family: comic sans ms;"/></dt>
             </dl>
 
         </g:form>
