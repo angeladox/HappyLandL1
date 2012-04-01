@@ -12,6 +12,6 @@
     <title>Sample title</title>
   </head>
   <body>
-    <h1>You have None  - The J3st3r</h1>
+    <h1 style="font-family: comic sans ms; font-style: bold; font-size: 2em;">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspComing soon...</h1>
   </body>
 </html>

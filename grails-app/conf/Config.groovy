@@ -10,6 +10,19 @@
 //    grails.config.locations << "file:" + System.properties["${appName}.config.location"]
 // }
 
+import java.awt.Font
+import java.awt.Color
+
+import com.octo.captcha.service.multitype.GenericManageableCaptchaService
+import com.octo.captcha.engine.GenericCaptchaEngine
+import com.octo.captcha.image.gimpy.GimpyFactory
+import com.octo.captcha.component.word.wordgenerator.RandomWordGenerator
+import com.octo.captcha.component.image.wordtoimage.ComposedWordToImage
+import com.octo.captcha.component.image.fontgenerator.RandomFontGenerator
+import com.octo.captcha.component.image.backgroundgenerator.GradientBackgroundGenerator
+import com.octo.captcha.component.image.color.SingleColorGenerator
+import com.octo.captcha.component.image.textpaster.NonLinearTextPaster
+
 
 grails.project.groupId = appName // change this to alter the default package name and Maven publishing destination
 grails.mime.file.extensions = true // enables the parsing of file extensions from URLs into the request format
@@ -92,14 +105,59 @@ log4j = {
            'net.sf.ehcache.hibernate'
 }
 grails {
-        mail {                
+        mail {    
+                to = "thehappylandlord@gmail.com"
                 host = 'smtp.gmail.com'
                 port = 465
-                username = 'happyllapp'
-                password = 'PDaddy101'
+                username = 'thehappylandlord@gmail.com'
+                password = 'happyguys'
                 props = ['mail.smtp.auth':'true',
                          'mail.smtp.socketFactory.port':'465',
                          'mail.smtp.socketFactory.class':'javax.net.ssl.SSLSocketFactory',
                          'mail.smtp.socketFactory.fallback':'false']
         }
-} 
+}
+
+/*mail {
+        to = "youraccount@gmail.com"
+        host = "smtp.gmail.com"
+        port = 465
+        username = "youraccount@gmail.com"
+        password = "yourpassword"
+        props = ["mail.smtp.auth":"true",
+            "mail.smtp.socketFactory.port":"465",
+            "mail.smtp.socketFactory.class":"javax.net.ssl.SSLSocketFactory",
+            "mail.smtp.socketFactory.fallback":"false"]
+    }*/
+        
+    jcaptchas {
+	captchaImage = new GenericManageableCaptchaService(
+		new GenericCaptchaEngine(
+			new GimpyFactory(
+				new RandomWordGenerator(
+					"abcdefghijklmnopqrstuvwxyz1234567890" // allowed characters
+				),
+				new ComposedWordToImage(
+					new RandomFontGenerator(
+						20, // min font size
+						30, // max font size
+						[new Font("Arial", 0, 10)] as Font[] // font type
+					),
+					new GradientBackgroundGenerator(
+						140, // background width
+						35, // background height
+						new SingleColorGenerator(new Color(0, 60, 0)), // first background colour
+						new SingleColorGenerator(new Color(20, 20, 20)) // second background colour
+					),
+					new NonLinearTextPaster(
+						6, // minimal length of text
+						6, // maximal length of text
+						new Color(0, 255, 0) // text colour
+					)
+				)
+			)
+		),
+		180, // minGuarantedStorageDelayInSeconds
+		180000 // maxCaptchaStoreSize
+	)
+}

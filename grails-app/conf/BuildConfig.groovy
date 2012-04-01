@@ -38,9 +38,16 @@ grails.project.dependency.resolution = {
 
     plugins {
         runtime ":hibernate:$grailsVersion"
-        runtime ":jquery:1.7.1"
+       // runtime ":jquery:1.7.1"
         runtime ":resources:1.1.5"
-
+        //runtime ":contactform:latest.integration"
+        runtime ":mail:.9"
+        //runtime ":jcaptcha:latest.integration"
+        runtime ":jquery:1.4.2.5"
+        
         build ":tomcat:$grailsVersion"
+        
+        
+
     }
 }

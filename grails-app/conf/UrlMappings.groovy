@@ -9,5 +9,8 @@ class UrlMappings {
 
 		"/"(view:"/index")
 		"500"(view:'/error')
+        
+                "/contactUs" {
+                controller = "contactForm"}
 	}
 }
